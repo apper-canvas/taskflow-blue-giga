@@ -1,17 +1,16 @@
-import React, { useState, useEffect } from "react"
-import { useParams, useOutletContext } from "react-router-dom"
-import TaskList from "@/components/organisms/TaskList"
-import TaskForm from "@/components/organisms/TaskForm"
-import FilterBar from "@/components/organisms/FilterBar"
-import QuickAdd from "@/components/organisms/QuickAdd"
-import Button from "@/components/atoms/Button"
-import ApperIcon from "@/components/ApperIcon"
-import { useTasks } from "@/hooks/useTasks"
-import { useCategories } from "@/hooks/useCategories"
-import { isOverdue, isDueToday, parseInputDate } from "@/utils/date"
-import { toast } from "react-toastify"
-import { cn } from "@/utils/cn"
-
+import React, { useEffect, useState } from "react";
+import { useOutletContext, useParams } from "react-router-dom";
+import { useTasks } from "@/hooks/useTasks";
+import { useCategories } from "@/hooks/useCategories";
+import { toast } from "react-toastify";
+import ApperIcon from "@/components/ApperIcon";
+import QuickAdd from "@/components/organisms/QuickAdd";
+import TaskList from "@/components/organisms/TaskList";
+import TaskForm from "@/components/organisms/TaskForm";
+import FilterBar from "@/components/organisms/FilterBar";
+import Button from "@/components/atoms/Button";
+import { isDueToday, isOverdue, parseInputDate } from "@/utils/date";
+import { cn } from "@/utils/cn";
 const TasksPage = () => {
   const params = useParams()
   const { showQuickAdd, setShowQuickAdd } = useOutletContext()
@@ -70,8 +69,8 @@ if (selectedPriority) {
     }
 
 // Completed filtering
-    if (!showCompleted) {
-      filtered = filtered.filter(task => !task.completed)
+if (!showCompleted) {
+      filtered = filtered.filter(task => !task.completed_c)
     }
 
     // Sorting
@@ -162,7 +161,7 @@ const category = categories.find(c => c.Id === parseInt(params.categoryId))
         completed_c: !task.completed_c,
         completed_at_c: !task.completed_c ? new Date().toISOString() : null
       })
-      toast.success(task.completed ? "Task marked as incomplete" : "Task completed! 🎉")
+toast.success(task.completed_c ? "Task marked as incomplete" : "Task completed! 🎉")
     } catch (error) {
       toast.error("Failed to update task")
     }

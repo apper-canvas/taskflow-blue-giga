@@ -75,10 +75,10 @@ newSet.delete(task.Id)
     )
   }
 
-  // Sort tasks by priority and completion status
+// Sort tasks by priority and completion status
   const sortedTasks = sortByPriority(tasks).sort((a, b) => {
-    if (a.completed !== b.completed) {
-      return a.completed ? 1 : -1
+    if (a.completed_c !== b.completed_c) {
+      return a.completed_c ? 1 : -1
     }
     return 0
   })
@@ -93,10 +93,10 @@ newSet.delete(task.Id)
           {filter && Object.keys(filter).length > 0 && " found"}
         </div>
         
-        {tasks.length > 0 && (
+{tasks.length > 0 && (
           <div className="text-xs text-gray-500">
-            {tasks.filter(t => !t.completed).length} active, {" "}
-            {tasks.filter(t => t.completed).length} completed
+            {tasks.filter(t => !t.completed_c).length} active, {" "}
+            {tasks.filter(t => t.completed_c).length} completed
           </div>
         )}
       </div>

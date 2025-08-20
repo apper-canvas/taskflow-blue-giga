@@ -46,6 +46,6 @@ export const getPriorityWeight = (priority) => {
 
 export const sortByPriority = (tasks) => {
   return [...tasks].sort((a, b) => {
-    return getPriorityWeight(b.priority) - getPriorityWeight(a.priority)
+    return getPriorityWeight(b.priority_c) - getPriorityWeight(a.priority_c)
   })
 }

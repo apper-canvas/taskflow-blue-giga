@@ -2,15 +2,15 @@ import React, { createContext, useEffect, useState } from "react";
 import { BrowserRouter, Route, Routes, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { ToastContainer } from "react-toastify";
-import { clearUser, setUser } from "./store/userSlice";
-import Login from "@/components/pages/Login";
-import Signup from "@/components/pages/Signup";
 import Callback from "@/components/pages/Callback";
-import ErrorPage from "@/components/pages/ErrorPage";
-import ResetPassword from "@/components/pages/ResetPassword";
-import PromptPassword from "@/components/pages/PromptPassword";
-import Layout from "@/components/organisms/Layout";
 import TasksPage from "@/components/pages/TasksPage";
+import PromptPassword from "@/components/pages/PromptPassword";
+import Login from "@/components/pages/Login";
+import ResetPassword from "@/components/pages/ResetPassword";
+import Signup from "@/components/pages/Signup";
+import ErrorPage from "@/components/pages/ErrorPage";
+import Layout from "@/components/organisms/Layout";
+import { clearUser, setUser } from "@/store/userSlice";
 export const AuthContext = createContext(null)
 
 function AppContent() {
@@ -109,51 +109,51 @@ function AppContent() {
     )
   }
   
-  return (
+return (
     <AuthContext.Provider value={authMethods}>
-      <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-50">
-        <Routes>
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/callback" element={<Callback />} />
-          <Route path="/error" element={<ErrorPage />} />
-          <Route path="/prompt-password/:appId/:emailAddress/:provider" element={<PromptPassword />} />
-          <Route path="/reset-password/:appId/:fields" element={<ResetPassword />} />
-          <Route path="/" element={<Layout />}>
-            <Route index element={<TasksPage />} />
-            <Route path="category/:categoryId" element={<TasksPage />} />
-            <Route path="priority/:priority" element={<TasksPage />} />
-            <Route path="overdue" element={<TasksPage />} />
-            <Route path="today" element={<TasksPage />} />
-            <Route path="upcoming" element={<TasksPage />} />
-            <Route path="completed" element={<TasksPage />} />
-          </Route>
-        </Routes>
-        
-        <ToastContainer
-          position="top-right"
-          autoClose={3000}
-          hideProgressBar={false}
-          newestOnTop
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          className="mt-16"
-          toastClassName="rounded-xl shadow-lg"
-          style={{ zIndex: 9999 }}
-        />
-      </div>
+      <BrowserRouter>
+        <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-50">
+          <Routes>
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/callback" element={<Callback />} />
+            <Route path="/error" element={<ErrorPage />} />
+            <Route path="/prompt-password/:appId/:emailAddress/:provider" element={<PromptPassword />} />
+            <Route path="/reset-password/:appId/:fields" element={<ResetPassword />} />
+            <Route path="/" element={<Layout />}>
+              <Route index element={<TasksPage />} />
+              <Route path="category/:categoryId" element={<TasksPage />} />
+              <Route path="priority/:priority" element={<TasksPage />} />
+              <Route path="overdue" element={<TasksPage />} />
+              <Route path="today" element={<TasksPage />} />
+              <Route path="upcoming" element={<TasksPage />} />
+              <Route path="completed" element={<TasksPage />} />
+            </Route>
+          </Routes>
+          
+          <ToastContainer
+            position="top-right"
+            autoClose={3000}
+            hideProgressBar={false}
+            newestOnTop
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            className="mt-16"
+            toastClassName="rounded-xl shadow-lg"
+            style={{ zIndex: 9999 }}
+          />
+        </div>
+      </BrowserRouter>
     </AuthContext.Provider>
   )
 }
 
 function App() {
   return (
-    <BrowserRouter>
-      <AppContent />
-    </BrowserRouter>
+    <AppContent />
   )
 }
 
